@@ -1,5 +1,5 @@
 use std::{io, cmp::Ordering};
-use rand::{thread_rng, Rng};
+use rand::{thread_rng};
 // use std::cmp::Ordering;
 
 #[derive(Debug)]
