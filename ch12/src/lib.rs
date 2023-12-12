@@ -13,7 +13,8 @@ impl Config {
         }
         let query = args[1].clone();
         let filename = args[2].clone();
-        let ignore_case = std::env::var("CASE_INSENSITIVE").is_err();
+        let ignore_case = std::env::var("CASE_INSENSITIVE").is_ok();
+
 
         Ok(Config { query, filename, ignore_case })
     }
@@ -37,9 +38,9 @@ pub fn run(config: &Config) -> Result<(), Box<dyn Error>>{
     println!("Search result for: {}", config.query());
 
     let result = if config.ignore_case() {
-        search(config.query(), &contents)
-    } else {
         search_case_insensitive(config.query(), &contents)
+    } else {
+        search(config.query(), &contents)
     };
 
     println!("{:#?}", result);
